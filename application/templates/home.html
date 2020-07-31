@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<p>this is a home page</p>
+{% for post in posts %}
+	<div>
+		<h3>{{ post.title }}</h3>
+		<p><b> - Band Name:</b>{{ post.name.band }}</p>
+		<p><b> - City:</b>{{ post.city }}</p>
+		<p> -- {{ post.content }}</p>
+	</div>
+{% endfor %}
+	
+{% endblock %}
+

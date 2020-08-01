@@ -1,34 +1,109 @@
-from application import app
-from flask import render_template
-
-
-dummyData = [
-{
-"name": {"band":"The Kooks"},
-"title":"First Post",
-"city":"Sheffield",
-"content":"Description of gig for exampe what tour/genres"
-},
-{
-"name": {"band":"The Kaleidoscopess"},
-"title":"Another Post",
-"city":"Manchester",
-"content":"Description of gig for exampe what tour/genres"
-},
-]
+from flask import render_template, redirect, url_for, request
+from application import app, db, bcrypt
+from flask_login import login_user, current_user, logout_user, login_required
+from application.models import Posts, Users
+from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
 
 @app.route('/')
 @app.route('/home')
+
 def home():
-    return render_template('home.html', title='Home', posts=dummyData)
+    postData = Posts.query.all()
+    return render_template('home.html', title='Home', posts=postData)
 
 @app.route('/city')
 def city():
-    return render_template('city.html', title='city')
-@app.route('/register')
-def register():
-    return render_template('register.html', title='Register')
-@app.route('/login')
-def login():
-    return render_template('login.html', title='Login')
+    return render_template('city.html', title='City')
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user=Users.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            if next_page:
+                return redirect(next_page)
+            else:
+                return redirect(url_for('home'))
+    return render_template('login.html', title='Login', form=form)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hash_pw = bcrypt.generate_password_hash(form.password.data)
+
+        user = Users(
+            band_name=form.band_name.data,
+            email=form.email.data,
+            password=hash_pw
+        )
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('post'))
+    return render_template('register.html', title='Register', form=form)
+
+@app.route('/post', methods=['GET', 'POST'])
+@login_required
+def post():
+    form = PostForm()
+    if form.validate_on_submit():
+        postData = Posts(
+            title=form.title.data,
+            content=form.content.data,
+            author=current_user
+        )
+        db.session.add(postData)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+
+    else:
+        print(form.errors)
+
+    return render_template('post.html', title='Post', form=form)
+
+@app.route('/logout')
+def logout():
+	logout_user()
+	return redirect(url_for('login'))
+
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.band_name = form.band_name.data
+        current_user.email = form.email.data
+        db.session.commit()
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.band_name.data = current_user.band_name
+        form.email.data = current_user.email
+    return render_template('account.html', title='Account', form=form)
+
+
+@app.route("/account/delete", methods=["GET", "POST"])
+@login_required
+def account_delete():
+    user = current_user.id
+     
+    posts = Posts.query.filter_by(user_id=user).all()
+    for post in posts:
+        db.session.delete(post)
+
+
+    account = Users.query.filter_by(id=user).first()
+    logout_user()
+    db.session.delete(account)
+    db.session.commit()
+
+    return redirect(url_for('register'))

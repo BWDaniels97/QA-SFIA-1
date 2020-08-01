@@ -1,6 +1,11 @@
-{% extends "layout.html" %}
-
+{% extends 'layout.html' %}
 {% block body_content %}
-<p>This page will allow you to sort gigs by city name!</p>
+    {% for post in posts %}
+        <div>
+            <h3>{{ post.title }}</h3>
+            <p><b> - Band name:</b>{{ post.name.band }}</p>
+            <p> -- {{ post.content }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}
-
+~      

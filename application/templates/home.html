@@ -1,15 +1,13 @@
-{% extends "layout.html" %}
-
+{% extends 'layout.html' %}
 {% block body_content %}
-<p>this is a home page</p>
+<p>Welcome to this web app!</p>
 {% for post in posts %}
-	<div>
-		<h3>{{ post.title }}</h3>
-		<p><b> - Band Name:</b>{{ post.name.band }}</p>
-		<p><b> - City:</b>{{ post.city }}</p>
-		<p> -- {{ post.content }}</p>
-	</div>
+    <div>
+        <h3>{{ post.title }}</h3>
+        <span>by <i>{{ post.author.band_name }}</i></span>
+        <span>on the <i>{{ post.date_posted }}</i></span>
+        <p>{{ post.content }}</p>
+    </div>
 {% endfor %}
-	
-{% endblock %}
 
+{% endblock %}

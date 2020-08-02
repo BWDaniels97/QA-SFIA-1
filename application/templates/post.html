@@ -4,17 +4,53 @@
 	<form method="POST" action="">
 		{{ form.hidden_tag() }}
 		<div class="form-group">
-			{{ form.title.label }}
-			{{ form.title }}
-			{% if form.title.errors %}
+			{{ form.city.label }}
+			{{ form.city }}
+			{% if form.city.errors %}
 			<div class="error">
-				{% for error in form.title.errors %}
+				{% for error in form.city.errors %}
 				    <span>{{ error }}</span>
 				{% endfor %}
 			</div>
 			{% endif %}
 		</div>
 		<br>
+		<div class="form-group">
+                        {{ form.venue.label }}
+                        {{ form.venue }}
+                        {% if form.venue.errors %}
+                        <div class="error">
+                                {% for error in form.venue.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
+		<div class="form-group">
+		        {{ form.gig_date.label }}
+                        {{ form.gig_date }}
+                        {% if form.gig_date.errors %}
+                        <div class="error">
+                                {% for error in form.gig_date.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
+		<div class="form-group">
+                        {{ form.gig_time.label }}
+                        {{ form.gig_time }}
+                        {% if form.gig_time.errors %}
+                        <div class="error">
+                                {% for error in form.gig_time.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
 		<div class="form-group">
 			{{ form.content.label }}
 			{{ form.content }}

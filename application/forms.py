@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import Users
 from flask_login import current_user
 
 class UpdateAccountForm(FlaskForm):
-    band_name = StringField('First Name',
+    band_name = StringField('Band Name',
         validators=[
             DataRequired(),
             Length(min=4, max=30)
@@ -24,10 +24,26 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('Email already in use')
 
 class PostForm(FlaskForm):
-    title = StringField('Title',
+    city = StringField('City',
         validators = [
             DataRequired(),
-            Length(min=2, max=100)
+            Length(min=2, max=50)
+        ]
+    )
+    venue = StringField('Venue',
+        validators = [
+            DataRequired(),
+            Length(min=2, max=50)
+        ]
+    )
+    gig_date = DateField('Date',
+        validators = [
+            DataRequired()
+        ]
+    )
+    gig_time = TimeField('Time',
+        validators = [
+            DataRequired()
         ]
     )
     content = StringField('Content',

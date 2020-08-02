@@ -1,11 +1,12 @@
 {% extends 'layout.html' %}
 {% block body_content %}
-<p>Welcome to this web app!</p>
+<p>Check out who's playing near you!</p>
 {% for post in posts %}
     <div>
-        <h3>{{ post.title }}</h3>
-        <span>by <i>{{ post.author.band_name }}</i></span>
-        <span>on the <i>{{ post.date_posted }}</i></span>
+	    <h2><u>{{ post.author.band_name }}</u></h2>
+	<h3>In {{ post.city }} at {{ post.venue }}</h3>
+	<p><b> Date of the gig: </b>{{ post.gig_date }}</p>
+	<p><b> Time of the gig: </b>{{ post.gig_time }}</p>
         <p>{{ post.content }}</p>
     </div>
 {% endfor %}

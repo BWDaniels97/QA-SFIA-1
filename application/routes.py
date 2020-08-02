@@ -57,8 +57,11 @@ def post():
     form = PostForm()
     if form.validate_on_submit():
         postData = Posts(
-            title=form.title.data,
+            city=form.city.data,
+            venue=form.venue.data,
             content=form.content.data,
+            gig_date=form.gig_date.data,
+            gig_time=form.gig_time.data,
             author=current_user
         )
         db.session.add(postData)

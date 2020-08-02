@@ -1,18 +1,20 @@
 from application import db, login_manager
 from flask_login import UserMixin
-from datetime import datetime
+from datetime import datetime, date, time
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False, unique=True)
+    city = db.Column(db.String(50), nullable=False)
+    venue = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(500), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    gig_date = db.Column(db.Date, nullable=False)
+    gig_time = db.Column(db.Time, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def __repr__(self):
         return ''.join([
             'User ID: ', self.user_id, '\r\n',
-            'Title: ', self.title, '\r\n', self.content
+            'City: ', self.city, '\r\n', self.content
         ])
 
 class Users(db.Model, UserMixin):

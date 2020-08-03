@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms_sqlalchemy.fields import QuerySelectField
+from application.models import Artist
 
 
 class ArtistForm(FlaskForm):
@@ -12,9 +14,12 @@ class ArtistForm(FlaskForm):
     )
     submit = SubmitField('Post!')
 
-
+def artist_query():
+    return Artist.query
 
 class GigForm(FlaskForm):
+
+    opts = QuerySelectField(query_factory=artist_query, allow_blank=True)
 
     city = StringField('City',
         validators = [

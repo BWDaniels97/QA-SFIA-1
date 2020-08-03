@@ -35,6 +35,7 @@ def gig():
     form = GigForm()
     if form.validate_on_submit():
         postData = Gigs(
+            artist_id=form.opts.data,
             city=form.city.data,
             venue=form.venue.data,
             content=form.content.data,

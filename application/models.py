@@ -10,7 +10,6 @@ class Gigs(db.Model):
     gig_time = db.Column(db.Time, nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
 
-
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     artist_name = db.Column(db.String(50), nullable=False)

@@ -4,6 +4,18 @@
 	<form method="POST" action="">
 		{{ form.hidden_tag() }}
 		<div class="form-group">
+                        {{ form.opts.label }}
+                        {{ form.opts }}
+                        {% if form.opts.errors %}
+                        <div class="error">
+                                {% for error in form.opts.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
+		<div class="form-group">
 			{{ form.city.label }}
 			{{ form.city }}
 			{% if form.city.errors %}

@@ -1,29 +1,26 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from application.models import Users
-from flask_login import current_user
+from wtforms_sqlalchemy.fields import QuerySelectField
+from application.models import Artist
 
-class UpdateAccountForm(FlaskForm):
-    band_name = StringField('Band Name',
-        validators=[
+
+class ArtistForm(FlaskForm):
+    artist_name = StringField('Name',
+        validators = [
             DataRequired(),
-            Length(min=4, max=30)
-        ])
-    email = StringField('Email',
-        validators=[
-            DataRequired(),
-            Email()
-        ])
-    submit = SubmitField('Update')
+            Length(min=2, max=50)
+        ]
+    )
+    submit = SubmitField('Post!')
 
-    def validate_email(self,email):
-        if email.data != current_user.email:
-            user = Users.query.filter_by(email=email.data).first()
-            if user:
-                raise ValidationError('Email already in use')
+def artist_query():
+    return Artist.query
 
-class PostForm(FlaskForm):
+class GigForm(FlaskForm):
+
+    opts = QuerySelectField(query_factory=artist_query, allow_blank=True)
+
     city = StringField('City',
         validators = [
             DataRequired(),
@@ -53,55 +50,3 @@ class PostForm(FlaskForm):
         ]
     )
     submit = SubmitField('Post!')
-
-
-
-class RegistrationForm(FlaskForm):
-    band_name = StringField('Band Name',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=30)
-        ]
-    )
-    email = StringField('Email',
-        validators = [
-            DataRequired(),
-            Email()
-        ]
-    )
-    password = PasswordField('Password',
-        validators = [
-            DataRequired(),
-        ]
-    )
-    confirm_password = PasswordField('Confirm Password',
-        validators = [
-            DataRequired(),
-            EqualTo('password')
-        ]
-    )
-    submit = SubmitField('Sign Up')
-
-    def validate_email(self, email):
-        user = Users.query.filter_by(email=email.data).first()
-
-        if user:
-            raise ValidationError('Email already in use')
-
-
-class LoginForm(FlaskForm):
-    email = StringField('Email',
-        validators=[
-            DataRequired(),
-            Email()
-        ]
-    )
-
-    password = PasswordField('Password',
-        validators=[
-            DataRequired()
-        ]
-    )
-
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')

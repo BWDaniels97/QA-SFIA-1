@@ -3,6 +3,7 @@
 <p>Check out who's playing near you!</p>
 {% for post in gigs %}
     <div>
+	<h3>{{ post.artist_name }}</h3>
 	<h3>In {{ post.city }} at {{ post.venue }}</h3>
 	<p><b> Date of the gig: </b>{{ post.gig_date }}</p>
 	<p><b> Time of the gig: </b>{{ post.gig_time }}</p>

@@ -36,7 +36,7 @@ you will use for you project as well as a detailed Risk Assessment.
 
 ## My App Idea
 
-My basic app idea consisted of a simple app that allowed the user to add artists to an artists database and then add gigs to a gig database of those said artists.  The app will also let the user dlete gigs and update them. 
+My basic app idea consisted of a simple app that allowed the user to add artists to an artists database and then add gigs to a gig database of those said artists.  The app will also let the user delete gigs and update them. 
 
 
 ## Jira Board

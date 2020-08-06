@@ -6,7 +6,7 @@
 		<div class="form-group">
                         {{ form.artistname.label }}
                         {{ form.artistname }}
-                        {% if form.opt.errors %}
+                        {% if form.artistname.errors %}
                         <div class="error">
                                 {% for error in form.artistname.errors %}
                                     <span>{{ error }}</span>

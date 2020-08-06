@@ -13,16 +13,17 @@ class ArtistForm(FlaskForm):
     )
     submit = SubmitField('Post!')
 
+def getOpts():
+    opts = []
+    artist = Artist.query.all()
+    for name in artist:
+        opts.append(name.artist_name)
+
+    return opts
 
 class GigForm(FlaskForm):
     
-    names = Artist.query.all()
-    opts = []
-    for item in names:
-        name = item.artist_name
-        opts.append(name)
-
-    artistname = SelectField("Artist Name", choices=opts, validators = [])
+    artistname = SelectField("Artist Name", choices=getOpts(), validators = [])
 
 
 

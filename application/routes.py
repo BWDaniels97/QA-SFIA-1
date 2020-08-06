@@ -36,8 +36,9 @@ def gig():
     
     form = GigForm()
     if form.validate_on_submit():
+        artist = Artist.query.filter_by(artist_name=form.artistname.data).first()
         gigData = Gigs(
-            singer=form.artistname.data,
+            singer=artist,
             city=form.city.data,
             venue=form.venue.data,
             content=form.content.data,

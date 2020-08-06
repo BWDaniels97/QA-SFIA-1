@@ -7,7 +7,8 @@ from application.forms import ArtistForm, GigForm
 @app.route('/home')
 
 def home():
-    return render_template('home.html', title='Home')
+    gigData = Gigs.query.all()
+    return render_template('home.html', title='Home', gigs=gigData)
 
 
 
@@ -15,10 +16,10 @@ def home():
 def artist():
     form = ArtistForm()
     if form.validate_on_submit():
-        postData = Artist(
+        artistData = Artist(
             artist_name=form.artist_name.data
         )
-        db.session.add(postData)
+        db.session.add(artistData)
         db.session.commit()
 
         return redirect(url_for('home'))
@@ -31,18 +32,29 @@ def artist():
 
 
 @app.route('/gigs', methods=['GET', 'POST'])
+
+
+
 def gig():
+    
     form = GigForm()
+    opts = []
+    artist = Artist.query.all()
+    for name in artist:
+        opts.append(name.artist_name)
+
+    form.artistname.choices = opts
     if form.validate_on_submit():
-        postData = Gigs(
-            artist_id=form.opts.data,
+        artist = Artist.query.filter_by(artist_name=form.artistname.data).first()
+        gigData = Gigs(
+            singer=artist,
             city=form.city.data,
             venue=form.venue.data,
             content=form.content.data,
             gig_date=form.gig_date.data,
             gig_time=form.gig_time.data
         )
-        db.session.add(postData)
+        db.session.add(gigData)
         db.session.commit()
 
         return redirect(url_for('home'))
@@ -51,3 +63,22 @@ def gig():
         print(form.errors)
 
     return render_template('gigs.html', title='Gigs', form=form)
+
+
+
+
+@app.route('/gigs/delete/<id>', methods=['Post', 'GET'])
+def gig_delete(id):
+    gig = Gigs.query.filter_by(id=id).first()
+    db.session.delete(gig)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+
+
+
+
+
+
+

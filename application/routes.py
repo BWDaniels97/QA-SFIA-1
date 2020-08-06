@@ -32,9 +32,18 @@ def artist():
 
 
 @app.route('/gigs', methods=['GET', 'POST'])
+
+
+
 def gig():
     
     form = GigForm()
+    opts = []
+    artist = Artist.query.all()
+    for name in artist:
+        opts.append(name.artist_name)
+
+    form.artistname.choices = opts
     if form.validate_on_submit():
         artist = Artist.query.filter_by(artist_name=form.artistname.data).first()
         gigData = Gigs(

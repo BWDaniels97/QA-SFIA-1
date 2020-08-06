@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateField, TimeField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from application.models import Artist
+from application.models import Artist, Gigs
 
 
 class ArtistForm(FlaskForm):
@@ -15,11 +15,16 @@ class ArtistForm(FlaskForm):
 
 
 class GigForm(FlaskForm):
+    
+    names = Artist.query.all()
+    opts = []
+    for item in names:
+        name = item.artist_name
+        opts.append(name)
 
-    names = Artist.query.order_by(Artist.artist_name).all()
+    artistname = SelectField("Artist Name", choices=opts, validators = [])
 
 
-    opts = SelectField("Names", choices=names, validate_choice=True)
 
     city = StringField('City',
         validators = [

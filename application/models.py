@@ -13,3 +13,4 @@ class Gigs(db.Model):
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     artist_name = db.Column(db.String(50), nullable=False)
+    gigs = db.relationship('Gigs', backref='singer', lazy=True)

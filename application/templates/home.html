@@ -1,13 +1,13 @@
 {% extends 'layout.html' %}
 {% block body_content %}
 <p>Check out who's playing near you!</p>
-{% for post in gigs %}
+{% for gig in gigs %}
     <div>
-	<h3>{{ post.artist_name }}</h3>
-	<h3>In {{ post.city }} at {{ post.venue }}</h3>
-	<p><b> Date of the gig: </b>{{ post.gig_date }}</p>
-	<p><b> Time of the gig: </b>{{ post.gig_time }}</p>
-        <p>{{ post.content }}</p>
+	<h3>{{ gig.singer.artist_name }}</h3>
+	<h3>In {{ gig.city }} at {{ gig.venue }}</h3>
+	<p><b> Date of the gig: </b>{{ gig.gig_date }}</p>
+	<p><b> Time of the gig: </b>{{ gig.gig_time }}</p>
+        <p>{{ gig.content }}</p>
     </div>
 {% endfor %}
 

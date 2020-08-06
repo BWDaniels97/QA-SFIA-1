@@ -4,11 +4,11 @@
 	<form method="POST" action="">
 		{{ form.hidden_tag() }}
 		<div class="form-group">
-                        {{ form.opts.label }}
-                        {{ form.opts }}
-                        {% if form.opts.errors %}
+                        {{ form.artistname.label }}
+                        {{ form.artistname }}
+                        {% if form.opt.errors %}
                         <div class="error">
-                                {% for error in form.opts.errors %}
+                                {% for error in form.artistname.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                         </div>

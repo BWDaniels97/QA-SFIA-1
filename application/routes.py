@@ -7,7 +7,8 @@ from application.forms import ArtistForm, GigForm
 @app.route('/home')
 
 def home():
-    return render_template('home.html', title='Home')
+    gigData = Gigs.query.all()
+    return render_template('home.html', title='Home', gigs=gigData)
 
 
 
@@ -15,10 +16,10 @@ def home():
 def artist():
     form = ArtistForm()
     if form.validate_on_submit():
-        postData = Artist(
+        artistData = Artist(
             artist_name=form.artist_name.data
         )
-        db.session.add(postData)
+        db.session.add(artistData)
         db.session.commit()
 
         return redirect(url_for('home'))
@@ -32,17 +33,18 @@ def artist():
 
 @app.route('/gigs', methods=['GET', 'POST'])
 def gig():
+    
     form = GigForm()
     if form.validate_on_submit():
-        postData = Gigs(
-            artist_name=form.opts.data,
+        gigData = Gigs(
+            singer=form.artistname.data,
             city=form.city.data,
             venue=form.venue.data,
             content=form.content.data,
             gig_date=form.gig_date.data,
             gig_time=form.gig_time.data
         )
-        db.session.add(postData)
+        db.session.add(gigData)
         db.session.commit()
 
         return redirect(url_for('home'))

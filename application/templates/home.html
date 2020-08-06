@@ -3,12 +3,17 @@
 <p>Check out who's playing near you!</p>
 {% for gig in gigs %}
     <div>
-	<h3>{{ gig.singer.artist_namer }}</h3>
+	<h3>{{ gig.singer.artist_name }}</h3>
 	<h3>In {{ gig.city }} at {{ gig.venue }}</h3>
 	<p><b> Date of the gig: </b>{{ gig.gig_date }}</p>
 	<p><b> Time of the gig: </b>{{ gig.gig_time }}</p>
         <p>{{ gig.content }}</p>
     </div>
+    <br>
+    <form action="{{url_for('gig_delete', id=gig.id)}}">
+	    <button type="submit">Delete Post</button>
+    </form>
+
 {% endfor %}
 
 {% endblock %}

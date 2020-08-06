@@ -54,3 +54,22 @@ def gig():
         print(form.errors)
 
     return render_template('gigs.html', title='Gigs', form=form)
+
+
+
+
+@app.route('/gigs/delete/<id>', methods=['Post', 'GET'])
+def gig_delete(id):
+    gig = Gigs.query.filter_by(id=id).first()
+    db.session.delete(gig)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+
+
+
+
+
+
+

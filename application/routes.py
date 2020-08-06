@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from application import app, db
 from application.models import Artist, Gigs
-from application.forms import ArtistForm, GigForm
+from application.forms import ArtistForm, GigForm, UpdateGigForm
 
 @app.route('/')
 @app.route('/home')
@@ -65,6 +65,26 @@ def gig():
     return render_template('gigs.html', title='Gigs', form=form)
 
 
+@app.route('/gigs/update/<id>', methods=['GET','POST'])
+def update(id):
+    gig = Gigs.query.filter_by(id=id).first()
+    form = UpdateGigForm()
+    if form.validate_on_submit():
+        gig.city=form.city.data
+        gig.venue=form.venue.data
+        gig.content=form.content.data
+        gig.gig_date=form.gig_date.data
+        gig.gig_time=form.gig_time.data
+        db.session.commit()
+        return redirect(url_for('home', form=form))
+
+    elif request.method == 'GET':
+        form.city.data=gig.city,
+        form.venue.data=gig.venue,
+        form.content.data=gig.content
+        form.gig_date.data=gig.gig_date
+        form.gig_time.data=gig.gig_time
+    return render_template('update.html', title='Update',form = form)
 
 
 @app.route('/gigs/delete/<id>', methods=['Post', 'GET'])

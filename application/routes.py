@@ -35,7 +35,7 @@ def artist():
 
 
 
-def gig():
+def gigs():
     
     form = GigForm()
     opts = []
@@ -87,7 +87,7 @@ def update(id):
     return render_template('update.html', title='Update',form = form)
 
 
-@app.route('/gigs/delete/<id>', methods=['Post', 'GET'])
+@app.route('/gigs/delete/<id>', methods=['POST', 'GET'])
 def gig_delete(id):
     gig = Gigs.query.filter_by(id=id).first()
     db.session.delete(gig)

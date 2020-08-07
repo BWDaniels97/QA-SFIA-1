@@ -65,7 +65,7 @@ class TestViews(TestBase):
     def test_add_gig(self):
         with self.client:
             response = self.client.post(url_for('gigs'),
-                data=dict(artistname='Artic Monkeys', city='Test City', venue='test venue', gig_date='2020-11-11', gig_time= '19:00:00', content='Test Gig'),follow_redirects=True)
+                data=dict(artistname='Artic Monkeys', city='Test City', venue='test venue', gig_date='2020-11-11', gig_time= '19:00', content='Test Gig'),follow_redirects=True)
             self.assertIn(b'Test Gig', response.data)
 
 
@@ -76,16 +76,22 @@ class TestViews(TestBase):
             self.assertEqual(response.status_code, 200)
 
 
-    '''def test_update_gig(self):
+    def test_update_gig(self):
         with self.client:
-            response = self.client.post(url_for('/update/1')
-                    data=dict(city='update', venue='update', gig_date='2020-11-11', gig_time='19:00:00', content='Updated'),follow_redirects=True)
-            self.assertIn(b'Updated', response.data)'''
+            response = self.client.post(url_for('update', id = 1),
+                    data=dict(city='update', venue='update', gig_date='2020-11-11', gig_time='19:00', content='Updated'),follow_redirects=True)
+            self.assertIn(b'Updated', response.data)
 
-    '''def test_update(self):
-        
-        response = self.client.get(url_for('/update/1')) 
-        self.assertEqual(response.status_code, 200)'''
+    def test_update(self):
+
+        response = self.client.get(url_for('update', id = 1)) 
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete(self):
+
+        response = self.client.get(url_for('gig_delete', id = 1))
+        self.assertEqual(response.status_code, 302)
+
 
 
 

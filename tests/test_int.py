@@ -72,15 +72,16 @@ class TestGig(TestBase):
         self.driver.find_element_by_xpath("/html/body/div/a[3]").click()
         time.sleep(1)
 
+        self.driver.find_element_by_xpath('//*[@id="artistname"]').send_keys("Artist")
         self.driver.find_element_by_xpath('//*[@id="city"]').send_keys("Sheffield")
         self.driver.find_element_by_xpath('//*[@id="venue"]').send_keys("Cafe Totem")
         self.driver.find_element_by_xpath('//*[@id="gig_date"]').send_keys("2020-11-11")
-        self.driver.find_element_by_xpath('//*[@id="gig_time"]').send_keys("19:00:00")
+        self.driver.find_element_by_xpath('//*[@id="gig_time"]').send_keys("19:00")
         self.driver.find_element_by_xpath('//*[@id="content"]').send_keys("Test content")
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         time.sleep(1)
 
-        assert url_for('gigs') in self.driver.current_url
+        assert url_for('home') in self.driver.current_url
 
 
 

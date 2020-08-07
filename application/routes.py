@@ -35,7 +35,7 @@ def artist():
 
 
 
-def gig():
+def gigs():
     
     form = GigForm()
     opts = []

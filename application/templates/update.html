@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block body_content %}
 <div class="form">
-	<form method="POST" action="">
-		{{ form.hidden_tag() }}
-		<div class="form-group">
-			{{ form.city.label }}
-			{{ form.city }}
-			{% if form.city.errors %}
-			<div class="error">
-				{% for error in form.city.errors %}
-				    <span>{{ error }}</span>
-				{% endfor %}
-			</div>
-			{% endif %}
-		</div>
-		<br>
-		<div class="form-group">
+        <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                        {{ form.city.label }}
+                        {{ form.city }}
+                        {% if form.city.errors %}
+                        <div class="error">
+                                {% for error in form.city.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
+                <div class="form-group">
                         {{ form.venue.label }}
                         {{ form.venue }}
                         {% if form.venue.errors %}
@@ -28,7 +28,7 @@
                 </div>
                 <br>
 		<div class="form-group">
-		        {{ form.gig_date.label }}
+                        {{ form.gig_date.label }}
                         {{ form.gig_date }}
                         {% if form.gig_date.errors %}
                         <div class="error">
@@ -39,7 +39,7 @@
                         {% endif %}
                 </div>
                 <br>
-		<div class="form-group">
+                <div class="form-group">
                         {{ form.gig_time.label }}
                         {{ form.gig_time }}
                         {% if form.gig_time.errors %}
@@ -51,21 +51,21 @@
                         {% endif %}
                 </div>
                 <br>
-		<div class="form-group">
-			{{ form.content.label }}
-			{{ form.content }}
-			{% if form.content.errors %}
-			<div class="error">
-				{% for error in form.content.errors %}
-				    <span>{{ error }}</span>
-				{% endfor %}
-			</div>
-			{% endif %}
-		</div>
-		<br>
-		<div class="form-group">
-		    {{ form.submit }}
-		</div>
-	</form>
+                <div class="form-group">
+                        {{ form.content.label }}
+                        {{ form.content }}
+                        {% if form.content.errors %}
+                        <div class="error">
+                                {% for error in form.content.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.submit }}
+                </div>
+        </form>
 </div>
 {% endblock body_content %}

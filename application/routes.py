@@ -1,70 +1,25 @@
 from flask import render_template, redirect, url_for, request
-from application import app, db, bcrypt
-from flask_login import login_user, current_user, logout_user, login_required
-from application.models import Posts, Users
-from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
+from application import app, db
+from application.models import Artist, Gigs
+from application.forms import ArtistForm, GigForm, UpdateGigForm
 
 @app.route('/')
 @app.route('/home')
 
 def home():
-    postData = Posts.query.all()
-    return render_template('home.html', title='Home', posts=postData)
+    gigData = Gigs.query.all()
+    return render_template('home.html', title='Home', gigs=gigData)
 
-@app.route('/city')
-def city():
-    return render_template('city.html', title='City')
 
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = LoginForm()
+
+@app.route('/artist', methods=['GET', 'POST'])
+def artist():
+    form = ArtistForm()
     if form.validate_on_submit():
-        user=Users.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            if next_page:
-                return redirect(next_page)
-            else:
-                return redirect(url_for('home'))
-    return render_template('login.html', title='Login', form=form)
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        hash_pw = bcrypt.generate_password_hash(form.password.data)
-
-        user = Users(
-            band_name=form.band_name.data,
-            email=form.email.data,
-            password=hash_pw
+        artistData = Artist(
+            artist_name=form.artist_name.data
         )
-
-        db.session.add(user)
-        db.session.commit()
-
-        return redirect(url_for('post'))
-    return render_template('register.html', title='Register', form=form)
-
-@app.route('/post', methods=['GET', 'POST'])
-@login_required
-def post():
-    form = PostForm()
-    if form.validate_on_submit():
-        postData = Posts(
-            city=form.city.data,
-            venue=form.venue.data,
-            content=form.content.data,
-            gig_date=form.gig_date.data,
-            gig_time=form.gig_time.data,
-            author=current_user
-        )
-        db.session.add(postData)
+        db.session.add(artistData)
         db.session.commit()
 
         return redirect(url_for('home'))
@@ -72,41 +27,78 @@ def post():
     else:
         print(form.errors)
 
-    return render_template('post.html', title='Post', form=form)
+    return render_template('artist.html', title='Artist', form=form)
 
-@app.route('/logout')
-def logout():
-	logout_user()
-	return redirect(url_for('login'))
 
-@app.route('/account', methods=['GET', 'POST'])
-@login_required
-def account():
-    form = UpdateAccountForm()
+
+@app.route('/gigs', methods=['GET', 'POST'])
+
+
+
+def gig():
+    
+    form = GigForm()
+    opts = []
+    artist = Artist.query.all()
+    for name in artist:
+        opts.append(name.artist_name)
+
+    form.artistname.choices = opts
     if form.validate_on_submit():
-        current_user.band_name = form.band_name.data
-        current_user.email = form.email.data
+        artist = Artist.query.filter_by(artist_name=form.artistname.data).first()
+        gigData = Gigs(
+            singer=artist,
+            city=form.city.data,
+            venue=form.venue.data,
+            content=form.content.data,
+            gig_date=form.gig_date.data,
+            gig_time=form.gig_time.data
+        )
+        db.session.add(gigData)
         db.session.commit()
-        return redirect(url_for('account'))
+
+        return redirect(url_for('home'))
+
+    else:
+        print(form.errors)
+
+    return render_template('gigs.html', title='Gigs', form=form)
+
+
+@app.route('/gigs/update/<id>', methods=['GET','POST'])
+def update(id):
+    gig = Gigs.query.filter_by(id=id).first()
+    form = UpdateGigForm()
+    if form.validate_on_submit():
+        gig.city=form.city.data
+        gig.venue=form.venue.data
+        gig.content=form.content.data
+        gig.gig_date=form.gig_date.data
+        gig.gig_time=form.gig_time.data
+        db.session.commit()
+        return redirect(url_for('home', form=form))
+
     elif request.method == 'GET':
-        form.band_name.data = current_user.band_name
-        form.email.data = current_user.email
-    return render_template('account.html', title='Account', form=form)
+        form.city.data=gig.city,
+        form.venue.data=gig.venue,
+        form.content.data=gig.content
+        form.gig_date.data=gig.gig_date
+        form.gig_time.data=gig.gig_time
+    return render_template('update.html', title='Update',form = form)
 
 
-@app.route("/account/delete", methods=["GET", "POST"])
-@login_required
-def account_delete():
-    user = current_user.id
-     
-    posts = Posts.query.filter_by(user_id=user).all()
-    for post in posts:
-        db.session.delete(post)
-
-
-    account = Users.query.filter_by(id=user).first()
-    logout_user()
-    db.session.delete(account)
+@app.route('/gigs/delete/<id>', methods=['Post', 'GET'])
+def gig_delete(id):
+    gig = Gigs.query.filter_by(id=id).first()
+    db.session.delete(gig)
     db.session.commit()
+    return redirect(url_for('home'))
 
-    return redirect(url_for('register'))
+
+
+
+
+
+
+
+

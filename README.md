@@ -91,7 +91,7 @@ https://docs.google.com/spreadsheets/d/1xI08u7esTqbOR0hwvc36yBdpmpYVrrePsfu_f_EB
 
 ## CI Pipeline 
 
-I automated the build, test and deployment process using the CI server Jenkins.  I did this by adding a webhook to GitHub which was triggered by every push event.
+I automated the build, test and deployment process using the CI server Jenkins.  I did this by adding a webhook to GitHub which was triggered by every push event. If there is an error with the testing, Jenkins does not run run the build step. Ensuring that a brocken app will not be built.
 This is a CI Pipeline that details the life cycle of my project.
 
 <p align="center">

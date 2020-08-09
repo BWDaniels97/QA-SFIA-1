@@ -129,7 +129,7 @@ The images below show the design of my app:
 
 Pytest is used to run unit tests on the app. These are designed to assert that if a certain function is run, the output should be a known value. Pytest produces coverage reports (Which you can see below) that show how much of the app the tests cover. In this case it was 100%.
 
-I also implamented some intergrated testing which uses selenium and chrome to run tests. For this I wrote two tests that tested both the inserting of an artist and a gig.
+I also implemented some integrated testing which uses selenium and chrome to run tests. For this I wrote two tests that tested both the inserting of an artist and a gig.
 
 <p align="center">
 <img src="Documentation/testing_screenshot.jpeg" alt="testing" width="400"/>
@@ -138,15 +138,15 @@ I also implamented some intergrated testing which uses selenium and chrome to ru
 ## Whats Wrong
 
 
-Some problems that are present in the app are that when you update a gig, brakets and commas appear arount the city and venue and if you dont delete them and click update, they then become apart of the updated gig details.
+Some problems that are present in the app are that when you update a gig, brackets and commas appear around the city and venue and if you don't delete them and click update, they then become apart of the updated gig details.
 
 ## Future Improvements
 
 
 
- - One main improvment I would like to make is improving the front end design.  This will be done by using css to style the web page.
+ - One main improvement I would like to make is improving the front end design.  This will be done by using css to style the web page.
 
- - Another improvment I would like to make is implementing a log in system so that multiple users can have their own personlised gigs and artists.
+ - Another improvement I would like to make is implementing a log in system so that multiple users can have their own personalised gigs and artists.
 
 
  ## Author

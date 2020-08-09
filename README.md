@@ -18,7 +18,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-#
+
 
 The main goals for this project were outlined as "To create a CRUD application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training."
 
@@ -37,7 +37,7 @@ you will use for you project as well as a detailed Risk Assessment.
 
 
 ## My App Idea
-#
+
 
 My basic app idea consisted of a simple app that allowed the user to add artists to an artists table in the database and then add gigs to a gig table that include those said artists.  The app will also let the user delete gigs and update them. 
 
@@ -53,8 +53,9 @@ My basic app idea consisted of a simple app that allowed the user to add artists
 
 - Artist Name
 
+
 ## Jira Board
-#
+
 
 I used Jira to plan out and keep track of my project.  A Trello board (or equivalent Kanban board tech) with full expansion
 on user stories, use cases and tasks needed to complete the project.
@@ -64,39 +65,75 @@ creating your project.
 
 
 ## Risk Analysis
-#
+
 
 This is a risk assessment that I carried out on the project.
 
 https://docs.google.com/spreadsheets/d/1xI08u7esTqbOR0hwvc36yBdpmpYVrrePsfu_f_EBQsQ/edit?usp=sharing
 
 ## CI Pipeline 
-#
+
 
 This is a CI Pipeline that details every aspect of my project.
 
+<p align="center">
+<img src="Documentation/ci_pipeline.jpeg" alt="ci" width="500"/>
+</p>
+
 ## Front end Design
-#
+
 
 The images below show the design of my app:
 
+### Entering New Artist
+
+<p align="center">
+<img src="Documentation/artist.jpeg" alt="artist" width="250"/>
+</p>
+
+### Entering New Gig
+
+<p align="center">
+<img src="Documentation/gig_dropdown.jpeg" alt="gigs" width="250"/>
+</p>
+
+### Posting Gig
+
+<p align="center">
+<img src="Documentation/gig_post.jpeg" alt="gigs" width="250"/>
+</p>
+
+### Updating Gig
+
+<p align="center">
+<img src="Documentation/update_manchester.jpeg" alt="gigs" width="250"/>
+</p>
+
+### Post Updated Gig
+
+<p align="center">
+<img src="Documentation/updated_man_gig.jpeg" alt="gigs" width="250"/>
+</p>
+
 
 ## Testing
-#
+
 
 Pytest is used to run unit tests on the app. These are designed to assert that if a certain function is run, the output should be a known value. Pytest produces coverage reports (Which you can see below) that show how much of the app the tests cover. In this case it was 100%.
 
 I also implamented some intergrated testing which uses selenium and chrome to run tests. For this I wrote two tests that tested both the inserting of an artist and a gig.
 
-![100% Testing Coverage](/Documentatio/testing_screenshot.jpeg)
+<p align="center">
+<img src="Documentation/testing_screenshot.jpeg" alt="testing" width="500"/>
+</p>
 
 ## Whats Wrong
-#
+
 
 Some problems that are present in the app are that when you update a gig, brakets and commas appear arount the city and venue and if you dont delete them and click update, they then become apart of the updated gig details.
 
 ## Future Improvements
-#
+
 
 
  - One main improvment I would like to make is improving the front end design.  This will be done by using css to style the web page.
@@ -105,6 +142,6 @@ Some problems that are present in the app are that when you update a gig, braket
 
 
  ## Author
- #
+ 
 
  Bradley Daniels

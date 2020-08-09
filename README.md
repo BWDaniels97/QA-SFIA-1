@@ -69,7 +69,13 @@ on user stories, use cases and tasks needed to complete the project.
 It could also provide a record of any issues or risks that you faced
 creating your project.
 
+<p align="center">
+<img src="Documentation/jira1.jpeg" alt="ci" width="500"/>
+</p>
 
+<p align="center">
+<img src="Documentation/jira2.jpeg" alt="ci" width="500"/>
+</p>
 
 ## Risk Analysis
 
@@ -84,8 +90,8 @@ https://docs.google.com/spreadsheets/d/1xI08u7esTqbOR0hwvc36yBdpmpYVrrePsfu_f_EB
 
 ## CI Pipeline 
 
-
-This is a CI Pipeline that details every aspect of my project.
+I automated the build, test and deployment process using the CI server Jenkins.  I did this by adding a webhook to GitHub which was triggered by every push event.
+This is a CI Pipeline that details the life cycle of my project.
 
 <p align="center">
 <img src="Documentation/ci_pipeline.jpeg" alt="ci" width="500"/>

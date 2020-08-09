@@ -54,6 +54,10 @@ My basic app idea consisted of a simple app that allowed the user to add artists
 - Artist Name
 
 
+<p align="center">
+<img src="Documentation/er.jpeg" alt="ci" width="500"/>
+</p>
+
 ## Jira Board
 
 
@@ -70,6 +74,10 @@ creating your project.
 This is a risk assessment that I carried out on the project.
 
 https://docs.google.com/spreadsheets/d/1xI08u7esTqbOR0hwvc36yBdpmpYVrrePsfu_f_EBQsQ/edit?usp=sharing
+
+<p align="center">
+<img src="Documentation/risk.jpeg" alt="ci" width="700"/>
+</p>
 
 ## CI Pipeline 
 

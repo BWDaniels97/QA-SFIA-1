@@ -53,6 +53,9 @@ My basic app idea consisted of a simple app that allowed the user to add artists
 
 - Artist Name
 
+### Entity Relationship Diagram
+
+This is the final entity relationship entity diagram for my project. I chose to keep it very simple and straight foward so that I could focus on hitting every objective of the project.
 
 <p align="center">
 <img src="Documentation/er.jpeg" alt="ci" width="500"/>

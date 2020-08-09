@@ -132,7 +132,7 @@ Pytest is used to run unit tests on the app. These are designed to assert that i
 I also implamented some intergrated testing which uses selenium and chrome to run tests. For this I wrote two tests that tested both the inserting of an artist and a gig.
 
 <p align="center">
-<img src="Documentation/testing_screenshot.jpeg" alt="testing" width="500"/>
+<img src="Documentation/testing_screenshot.jpeg" alt="testing" width="400"/>
 </p>
 
 ## Whats Wrong

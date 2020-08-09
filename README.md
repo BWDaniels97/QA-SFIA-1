@@ -57,7 +57,7 @@ My basic app idea consisted of a simple app that allowed the user to add artists
 ## Jira Board
 
 
-I used Jira to plan out and keep track of my project.  A Trello board (or equivalent Kanban board tech) with full expansion
+I used Jira to plan out and keep track of my project. I used a Kanban board with full expansion
 on user stories, use cases and tasks needed to complete the project.
 It could also provide a record of any issues or risks that you faced
 creating your project.

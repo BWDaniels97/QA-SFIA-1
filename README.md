@@ -4,6 +4,7 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+* [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Jira Board](#jira-board)
 * [Risk Analysis](#risk-analysis)
 * [CI Pipeline](#ci-pipeline)
@@ -53,9 +54,9 @@ My basic app idea consisted of a simple app that allowed the user to add artists
 
 - Artist Name
 
-### Entity Relationship Diagram
+## Entity Relationship Diagram
 
-This is the final entity relationship entity diagram for my project. I chose to keep it very simple and straight foward so that I could focus on hitting every objective of the project.
+This is the final entity relationship entity diagram for my project. I chose to keep it very simple and straight foward so that I could focus on hitting every objective of the project.  As you can see there is a one to many relationship between the artist and gig tables.  This is because one artist can have many gigs and a gig can only have one artist.
 
 <p align="center">
 <img src="Documentation/er.jpeg" alt="ci" width="500"/>

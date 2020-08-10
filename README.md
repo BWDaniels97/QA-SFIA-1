@@ -67,8 +67,10 @@ This is the final entity relationship entity diagram for my project. I chose to 
 
 I used Jira to plan out and keep track of my project. I used a Kanban board with full expansion
 on user stories, use cases and tasks needed to complete the project.
-It could also provide a record of any issues or risks that you faced
-creating your project.
+It acklso helps keeping tr of any issues or risks that I faced whilst completing the project.
+
+
+Heres a link to my jira board: https://sfia1-band-app.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=SBAP&selectedIssue=SBAP-4
 
 <p align="center">
 <img src="Documentation/jira1.jpeg" alt="ci" width="500"/>

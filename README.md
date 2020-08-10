@@ -93,7 +93,7 @@ https://docs.google.com/spreadsheets/d/1xI08u7esTqbOR0hwvc36yBdpmpYVrrePsfu_f_EB
 
 ## CI Pipeline 
 
-I automated the build, test and deployment process using the CI server Jenkins.  I did this by adding a webhook to GitHub which was triggered by every push event. If there is an error with the testing, Jenkins does not run run the build step. Ensuring that a brocken app will not be built.
+I automated the build, test and deployment process using the CI server Jenkins.  I did this by adding a webhook to GitHub which was triggered by every push event. If there is an error with the testing, Jenkins does not run the build step. Ensuring that a brocken app will not be built.
 This is a CI Pipeline that details the life cycle of my project.
 
 <p align="center">
@@ -139,7 +139,7 @@ The images below show the design of my app:
 ## Testing
 
 
-Pytest is used to run unit tests on the app. These are designed to assert that if a certain function is run, the output should be a known value. Pytest produces coverage reports (Which you can see below) that show how much of the app the tests cover. In this case it was 100%.
+Pytest is used to run unit tests on the app. These are designed to assert that if a certain function is run correctly, the output should be a known value. Pytest produces coverage reports (Which you can see below) that show how much of the app the tests cover. In this case it was 100%.
 
 I also implemented some integrated testing which uses selenium and chrome to run tests. For this I wrote two tests that tested both the inserting of an artist and a gig.
 
@@ -150,7 +150,7 @@ I also implemented some integrated testing which uses selenium and chrome to run
 ## Whats Wrong
 
 
-Some problems that are present in the app are that when you update a gig, brackets and commas appear around the city and venue and if you don't delete them and click update, they then become apart of the updated gig details.
+One problem that is present in the app is that when you update a gig, brackets and commas appear around the city and venue and if you don't delete them and click update, they then become apart of the updated gig details.
 
 ## Future Improvements
 
